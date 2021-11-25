@@ -6,7 +6,7 @@ import React, { Component } from 'react';
 class UserTable extends Component {
   render() {
 
-    const { users, deleteUser } = this.props;
+    const { users, deleteUser, editUser, getUserById } = this.props;
 
     return (<table className="table">
       <thead>
@@ -24,7 +24,7 @@ class UserTable extends Component {
               <td>{user.username}</td>
               <td>
                 <button
-
+                   onClick={() =>  {editUser(user.id)}}
                   className="button muted-button"
                 >
                   Edit
