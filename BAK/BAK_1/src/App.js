@@ -9,7 +9,7 @@ class App extends Component {
       { id: 2, name: "Isaac", username: "Aizic" },
       { id: 3, name: "Jacob", username: "Jake" },
     ],
-    id:'',
+    id:null,
     editing: false,
     // results: [],
     // query: '',
@@ -53,7 +53,7 @@ class App extends Component {
     this.setState({
       users: users.map((user) => (user.id === id ? updatedUser : user)),
     });
-    console.log('updated', updatedUser)
+    console.log('updated')
   };
 
   

@@ -5,7 +5,7 @@ class EditUserForm extends Component {
 
     initialFormState = {
         form: {
-            
+            id: null,
             name: '',
             username: '',
         },
@@ -38,11 +38,11 @@ class EditUserForm extends Component {
     handleSubmit = event => {
         event.preventDefault()
 
-        const {  name, username } = this.state.form
+        const { id, name, username } = this.state.form
         const { updateUser } = this.props
 
         const updatedUser = {
-            id:this.props.id,
+            id,
             name,
             username,
         }
