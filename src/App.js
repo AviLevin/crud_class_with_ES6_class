@@ -79,7 +79,7 @@ class App extends Component {
       <div className="container">
         <div className="row top">
           <h1>
-            CRUD App with <span className="title">ES6 Class</span>{" "}
+            CRUD App with  <span className="title">ES6 Class</span>{" "}
           </h1>
         </div>
 
