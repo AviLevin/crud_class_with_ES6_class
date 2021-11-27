@@ -9,7 +9,11 @@ class App extends Component {
       { id: 2, name: "Isaac", username: "Aizic" },
       { id: 3, name: "Jacob", username: "Jake" },
     ],
-    id:'',
+
+    currnetUser:[
+      {id:'', name:'', username:''}
+    ],
+ 
     editing: false,
     // results: [],
     // query: '',
@@ -41,7 +45,7 @@ class App extends Component {
 
   editUser = (user) => {
     this.setState({editing:true});
-    this.setState({id:user.id, name:user.name});
+    this.setState({currnetUser: user});
     console.log("initEdit mode", user.id)
 
     // setCurrentUser({ id: user.id, name: user.name, username: user.username });
@@ -68,8 +72,9 @@ class App extends Component {
   }
 
   render() {
-    const { users, results, query,id } = this.state;
-
+    const { users,id,name,currnetUser } = this.state;
+    // console.log('id on APP', id)
+    console.log('curr on App', currnetUser)
     return (
       <div className="container">
         <div className="row top">
@@ -83,7 +88,7 @@ class App extends Component {
             {this.state.editing ? (
               <div>
                 <h2>Edit user</h2>
-                <EditUserForm updateUser={this.updateUser} getUserById={this.getUserById} id={id}  />
+                <EditUserForm updateUser={this.updateUser} getUserById={this.getUserById} {...currnetUser}  />
               </div>
             ) : (
               <div>

@@ -23,16 +23,16 @@ class UserTable extends Component {
               <td>{user.name}</td>
               <td>{user.username}</td>
               <td>
-                <button
+                <button 
                    onClick={() =>  {editUser(user)}}
-                  className="button muted-button"
+                  className="btn btn-primary"
                 >
                   Edit
                 </button>
                 
                 <button
                   onClick={() =>  {deleteUser(user.id)}}
-                  className="button muted-button"
+                  className="btn btn-primary"
                 >
                   Delete
                 </button>

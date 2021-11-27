@@ -16,9 +16,13 @@ code {
   padding: 30px 0px 30px 0px;
 }
 
-.btn-warning {
-  margin-right: 10px;
+
+
+.btn{
+  margin-right: 10px !important;
 }
+
+
 
 .title {
   color: #3b5998;
