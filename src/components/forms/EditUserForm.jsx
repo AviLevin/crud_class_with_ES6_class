@@ -2,20 +2,16 @@ import React, { Component } from 'react';
 
 
 class EditUserForm extends Component {
-  
-     initialFormState = {
-    form: {
 
+  initialFormState = {
+    form: {
       name: this.props.name,
       username: this.props.username,
     },
   }
   state = this.initialFormState;
 
- 
 
-
- 
   componentDidUpdate(prevProps, prevState) {
     if (prevProps.id !== this.props.id) {
       const user = this.props.getUserById(this.props.id)
@@ -27,9 +23,6 @@ class EditUserForm extends Component {
         },
       })
     }
-
-    console.log('prevProps', prevProps.id)
-    console.log('tpID', this.props.id)
   }
 
 
@@ -62,15 +55,12 @@ class EditUserForm extends Component {
 
 
   render() {
-  
-
     const { name, username } = this.state.form
-    console.log('tpid on render', this.props.id)
-    console.log('name is', name)
-   
 
     return (<form
+
       onSubmit={this.handleSubmit}
+
     >
       <div className="form-group">
         <label >Name</label>
@@ -88,9 +78,11 @@ class EditUserForm extends Component {
       </div>
       <br></br>
       <button className="btn btn-warning">Update user</button>
+
       <button
+        type="button"
         className="btn btn-warning"
-      // onClick={() => Editing(false)}
+        onClick={() => { this.props.cancelEditUser() }}
       >
         Cancel
       </button>

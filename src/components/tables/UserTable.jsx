@@ -6,7 +6,7 @@ import React, { Component } from 'react';
 class UserTable extends Component {
   render() {
 
-    const { users, deleteUser, editUser, getUserById } = this.props;
+    const { users, deleteUser, editUser } = this.props;
 
     return (<table className="table">
       <thead>

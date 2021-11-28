@@ -9,46 +9,31 @@ class App extends Component {
       { id: 2, name: "Isaac", username: "Aizic" },
       { id: 3, name: "Jacob", username: "Jake" },
     ],
-
-    currnetUser:[
-      {id:'', name:'', username:''}
-    ],
- 
+    currnetUser: [{ id: "", name: "", username: "" }],
     editing: false,
-    // results: [],
-    // query: '',
   };
 
   state = this.initialState;
 
   addUser = (user) => {
     const { users } = this.state;
-
     user.id = users.length + 1;
-
     this.setState({ users: [...users, user] });
-
-    console.log("isUsers", users);
   };
 
   deleteUser = (id) => {
     const { users } = this.state;
-
     this.setState({
       users: users.filter((user) => user.id !== id),
     });
-    console.log("deleted", users);
+    this.setState({ editing: false });
   };
 
   // edit________________________
 
-
   editUser = (user) => {
-    this.setState({editing:true});
-    this.setState({currnetUser: user});
-    console.log("initEdit mode", user.id)
-
-    // setCurrentUser({ id: user.id, name: user.name, username: user.username });
+    this.setState({ editing: true });
+    this.setState({ currnetUser: user });
   };
 
   updateUser = (id, updatedUser) => {
@@ -57,29 +42,27 @@ class App extends Component {
     this.setState({
       users: users.map((user) => (user.id === id ? updatedUser : user)),
     });
-    console.log('updated', updatedUser)
+    this.setState({ editing: false });
   };
 
-  
+  cancelEditUser = () => {
+    this.setState({ editing: false });
+  };
 
-
-  getUserById = id => {
-    const { users } = this.state
-
-    const u = users.filter(user => user.id === id)
-
-    return u[0]
-  }
+  getUserById = (id) => {
+    const { users } = this.state;
+    const u = users.filter((user) => user.id === id);
+    return u[0];
+  };
 
   render() {
-    const { users,id,name,currnetUser } = this.state;
-    // console.log('id on APP', id)
-    console.log('curr on App', currnetUser)
+    const { users, currnetUser} = this.state;
+
     return (
       <div className="container">
         <div className="row top">
           <h1>
-            CRUD App with  <span className="title">ES6 Class</span>{" "}
+            CRUD App with <span className="title">ES6 Class</span>{" "}
           </h1>
         </div>
 
@@ -88,7 +71,13 @@ class App extends Component {
             {this.state.editing ? (
               <div>
                 <h2>Edit user</h2>
-                <EditUserForm updateUser={this.updateUser} getUserById={this.getUserById} {...currnetUser}  />
+                <EditUserForm
+                  updateUser={this.updateUser}
+                  getUserById={this.getUserById}
+                  {...currnetUser}
+                  {...this.state}
+                  cancelEditUser={this.cancelEditUser}
+                />
               </div>
             ) : (
               <div>
@@ -100,8 +89,11 @@ class App extends Component {
 
           <div className="col-9">
             <h2>View users</h2>
-            <UserTable users={users} deleteUser={this.deleteUser}
-             editUser={this.editUser} ></UserTable>
+            <UserTable
+              users={users}
+              deleteUser={this.deleteUser}
+              editUser={this.editUser}
+            ></UserTable>
           </div>
         </div>
       </div>
